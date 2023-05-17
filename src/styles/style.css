@@ -1,0 +1,98 @@
+@font-face {
+	font-family: "Retronoid";
+	src: url(/public/retronoid/Retronoid.otf);
+}
+
+@font-face {
+	font-family: "Designer";
+	src: url(/public/designer_2/Designer.otf);
+}
+
+body {
+	background-image: url(/public/image/pexels-felix-mittermeier-1146134.jpg);
+	background-size: 100%;
+	margin: 0px;
+}
+
+canvas {
+	border: 1px solid black;
+}
+
+.telaToda {
+	justify-content: center;
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+}
+
+.telaInicio {
+	background-image: url('/public/img/fundo.jpg');
+	background-size: 700px;
+	width: 700px;
+	height: 497px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+
+.titulo {
+	font-family: "Retronoid";
+	font-size: 100px;
+	background-image: linear-gradient(to bottom, rgb(153, 51, 131), rgb(145, 70, 180), rgb(64, 152, 224));
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	margin: 10px;
+
+}
+
+.texto {
+	font-family: "Designer";
+	font-size: 20px;
+	font-weight: lighter;
+	color: white;
+	width: 400px;
+	margin-left: 35px;
+	animation: show-content 3s ease-in 100ms forwards 1;
+}
+
+.subtexto {
+	font-family: "Designer";
+	font-size: 20px;
+	font-weight: lighter;
+	color: orchid;
+	text-shadow: black 0.1em 0.1em 0.2em;
+	margin-left: 80px;
+	width: 300px;
+}
+
+.botao {
+	margin: 5px;
+	padding: 8px;
+	border-radius: 8px;
+	font-size: 15px;
+	font-family: "Designer";
+	background-image: linear-gradient(to bottom, rgb(195, 147, 243), rgb(7, 143, 255), rgb(195, 147, 243));
+	animation: show-content 3s ease-in 100ms forwards 1;
+}
+
+.botao:hover {
+	background-image: linear-gradient(to bottom, rgb(205, 7, 255), rgb(195, 147, 243), rgb(205, 7, 255));
+	transition: 1s ease, background-image 3s ease, box-shadow 3s linear;
+}
+
+.botao:active {
+	transform: scale(0.9);
+}
+
+@keyframes show-content {
+	0% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
