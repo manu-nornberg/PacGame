@@ -1,5 +1,4 @@
-
-import Circle from "./circle";
+import Circle from "./Circle";
 import { loadImage } from "./loaderAssets";
 
 export default class Pacman extends Circle{
@@ -55,7 +54,7 @@ export default class Pacman extends Circle{
 			this.height
 		)
 		//descomentar para ver a area de hit
-		// this.hit.draw(CTX)
+		this.hit.draw(CTX)
 	}
 
 	animeSprite(FRAMES){ //Controla a animacao do sprite
@@ -108,11 +107,11 @@ export default class Pacman extends Circle{
 
 	limits(limits){
 		//borda dele da direita  borda do limite
-        if( this.x + this.size >= limits.width ){
+        if( this.x + this.size  >= limits.width ){
             this.x = limits.width - this.size 
         }
         //borda dele da esquerda  borda do limite
-        if( this.x - this.size <= 0 ){
+        if( this.x - this.size <=0 ){
             this.x = this.size
         }
         //borda dele da direita  borda do limite
@@ -130,9 +129,9 @@ export default class Pacman extends Circle{
 		this.hit.y = this.y + this.height/2
 	}
 
-	colide(other){
+	colide(other) {
 		return (this.hit.size + other.size >= Math.sqrt(
-			(this.hit.x-other.x)**2 + (this.hit.y-other.y)**2)
+			(this.hit.x - other.x) ** 2 + (this.hit.y - other.y) ** 2)
 		)
 	}
 }

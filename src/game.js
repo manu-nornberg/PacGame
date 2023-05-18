@@ -109,7 +109,7 @@ const loop = () => {
 					fantas.forEach(f => {
 						f.move(boundaries, pac)
 						f.draw(CTX)
-						if (f.colide(pac)) {
+						if (pac.colide(f)) {
 							pac.vidinha -= 1
 							f.x = Math.random() * CANVAS.width
 							f.y = Math.random() * CANVAS.height
@@ -123,7 +123,7 @@ const loop = () => {
 					fantasVerde.forEach(f => {
 						f.move(boundaries, pac)
 						f.draw(CTX)
-						if (f.colide(pac)) {
+						if (pac.colide(f)) {
 							pac.vidinha -= 1
 							f.x = Math.random() * CANVAS.width
 							f.y = Math.random() * CANVAS.height
@@ -137,7 +137,7 @@ const loop = () => {
 					fantasAzul.forEach(f => {
 						f.move(boundaries, pac)
 						f.draw(CTX)
-						if (f.colide(pac)) {
+						if (pac.colide(f)) {
 							pac.vidinha -= 1
 							f.x = Math.random() * CANVAS.width
 							f.y = Math.random() * CANVAS.height
@@ -151,7 +151,7 @@ const loop = () => {
 					fantasPink.forEach(f => {
 						f.move(boundaries, pac)
 						f.draw(CTX)
-						if (f.colide(pac)) {
+						if (pac.colide(f)) {
 							pac.vidinha -= 1
 							f.x = Math.random() * CANVAS.width
 							f.y = Math.random() * CANVAS.height
@@ -167,7 +167,7 @@ const loop = () => {
 					fantamorto.forEach(f => {
 						f.move(boundaries, 0)
 						f.draw(CTX)
-						if (f.colide(pac)) {
+						if (pac.colide(f)) {
 							pontuacao += 1
 							f.x = Math.random() * CANVAS.width
 							f.y = Math.random() * CANVAS.height
@@ -178,7 +178,7 @@ const loop = () => {
 				fantamorto.forEach(f => {
 					f.move(boundaries, 0)
 					f.draw(CTX)
-					if (f.colide(pac)) {
+					if (pac.colide(f)) {
 						pontuacao += 1
 						f.x = Math.random() * CANVAS.width
 						f.y = Math.random() * CANVAS.height
@@ -189,7 +189,7 @@ const loop = () => {
 			fantamorto.forEach(f => {
 				f.move(boundaries, 0)
 				f.draw(CTX)
-				if (f.colide(pac)) {
+				if (pac.colide(f)) {
 					pontuacao += 1
 					f.x = Math.random() * CANVAS.width
 					f.y = Math.random() * CANVAS.height
@@ -200,7 +200,7 @@ const loop = () => {
 			bolinhas.forEach(b => {
 				b.move(boundaries, 0)
 				b.draw(CTX)
-				if (b.colide(pac)) {
+				if (pac.colide(b)) {
 					b.x = Math.random() * CANVAS.width
 					b.y = Math.random() * CANVAS.height
 					sound3.play()

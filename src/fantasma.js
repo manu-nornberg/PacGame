@@ -1,4 +1,4 @@
-import Circle from "./circle";
+import Circle from "./Circle";
 import { loadImage } from "./loaderAssets";
 
 
@@ -44,6 +44,7 @@ export default class Fantasma extends Circle{
 			this.width,
 			this.height
 		)
+		// this.hit.draw(CTX)
 	}
 
 	animeSprite(FRAMES){ //Controla a animacao do sprite
@@ -84,5 +85,16 @@ export default class Fantasma extends Circle{
 			this.x = Math.random()*limits.width;
 		}
 	}
+
+	// updateHit(){
+	// 	this.hit.x = this.x + this.width/2
+	// 	this.hit.y = this.y + this.height/2
+	// }
+
+	// colide(other) {
+	// 	return (this.hit.size + other.size >= Math.sqrt(
+	// 		(this.hit.x - other.x) ** 2 + (this.hit.y - other.y) ** 2)
+	// 	)
+	// }
 
 }
