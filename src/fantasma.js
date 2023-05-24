@@ -26,6 +26,13 @@ export default class Fantasma extends Circle{
 
 		this.status = 'fantasminha'
 
+		this.hit = new Circle(
+			this.x + this.width/2,
+			this.y + this.height/2,
+			this.size,
+			0,"rgba(255,0,255,.5)"
+		)
+
 		
 		this.animeSprite(FRAMES)
 	}
@@ -44,6 +51,7 @@ export default class Fantasma extends Circle{
 			this.width,
 			this.height
 		)
+
 		// this.hit.draw(CTX)
 	}
 
@@ -86,15 +94,15 @@ export default class Fantasma extends Circle{
 		}
 	}
 
-	// updateHit(){
-	// 	this.hit.x = this.x + this.width/2
-	// 	this.hit.y = this.y + this.height/2
-	// }
+	updateHit(){
+		this.hit.x = this.x + this.width/2
+		this.hit.y = this.y + this.height/2
+	}
 
-	// colide(other) {
-	// 	return (this.hit.size + other.size >= Math.sqrt(
-	// 		(this.hit.x - other.x) ** 2 + (this.hit.y - other.y) ** 2)
-	// 	)
-	// }
+	colide(other) {
+		return (this.hit.size + other.size >= Math.sqrt(
+			(this.hit.x - other.x) + (this.hit.y - other.y) )
+		)
+	}
 
 }

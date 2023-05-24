@@ -1,4 +1,4 @@
-import Circle from './circle.js';
+import Circle from "./Circle";
 
 export default class Bolinha extends Circle{
     
@@ -13,9 +13,21 @@ export default class Bolinha extends Circle{
     }
 
     limits(limits){
-        if(this.y - this.size > limits.height){
-            this.y = -2*this.size
-            this.x = Math.random()*limits.width;
+		//borda dele da direita  borda do limite
+        if( this.x  >= limits.width - this.size *2 ){
+            this.x = limits.width - this.size *2
         }
-    }
+        //borda dele da esquerda  borda do limite
+        if( this.x < 0 ){
+            this.x = 0
+        }
+        //borda dele da direita  borda do limite
+        if( this.y >= limits.height - this.size *2 ){
+            this.y = limits.height - this.size *2
+        }
+        //borda dele da esquerda  borda do limite
+        if( this.y < 25 ){
+            this.y = 25
+        }
+	}
 }

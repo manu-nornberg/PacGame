@@ -16,6 +16,7 @@ export default class Circle {
 			this.line,
 			this.color,
 			this.color)
+
 	}
 
 	circ(ctx, pos_x, pos_y, radius, line, color, fill = false) {

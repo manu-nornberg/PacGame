@@ -41,7 +41,7 @@ export default class Pacman extends Circle{
 
 	draw(CTX){
 		this.setCellY()
-
+		if(!this.img) return;
 		CTX.drawImage(
 			this.img,
 			this.cellX * this.cellWidth,
@@ -54,7 +54,7 @@ export default class Pacman extends Circle{
 			this.height
 		)
 		//descomentar para ver a area de hit
-		this.hit.draw(CTX)
+		// this.hit.draw(CTX)
 	}
 
 	animeSprite(FRAMES){ //Controla a animacao do sprite
@@ -107,20 +107,20 @@ export default class Pacman extends Circle{
 
 	limits(limits){
 		//borda dele da direita  borda do limite
-        if( this.x + this.size  >= limits.width ){
-            this.x = limits.width - this.size 
+        if( this.x  >= limits.width - this.size *2 ){
+            this.x = limits.width - this.size *2
         }
         //borda dele da esquerda  borda do limite
-        if( this.x - this.size <=0 ){
-            this.x = this.size
+        if( this.x < 0 ){
+            this.x = 0
         }
         //borda dele da direita  borda do limite
-        if( this.y + this.size >= limits.height ){
-            this.y = limits.height - this.size
+        if( this.y >= limits.height - this.size *2 ){
+            this.y = limits.height - this.size *2
         }
         //borda dele da esquerda  borda do limite
-        if( this.y - this.size <= 0 ){
-            this.y = this.size
+        if( this.y < 25 ){
+            this.y = 25
         }
 	}
 

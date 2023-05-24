@@ -3,7 +3,7 @@ import Fantasma2 from "./fantasma2";
 import Fantasma3 from "./fantasma3";
 import { keyPress, key } from "./keyboard"
 import Pacman from "./Hero"
-import { loadImage, loadAudio } from "./loaderAssets";
+import { loadImage, loadAudio, loadVideo } from "./loaderAssets";
 import Bolinha from "./bolinha";
 
 let CTX
@@ -16,7 +16,7 @@ const qntfantaAzul = 1
 const qntfantaPink = 1
 const qntfantamortinho = 4
 const qntBolinha = 4
-const pac = new Pacman(200, 80, 20, 5, 40, 40, 'img/spritepac.png', FRAMES, 3)
+const pac = new Pacman(200, 80, 20, 5, 50, 50, 'img/spritepac.png', FRAMES, 3)
 
 let fantas = Array.from({ length: qntfanta });//faz um array com a qnt de inimigos 
 let fantasVerde = Array.from({ length: qntfantaVerde });//faz um array com a qnt de inimigos 
@@ -32,19 +32,21 @@ let backgroundImage = null
 let sound
 let sound2
 let sound3
+let video
 
 const init = async () => {
 	console.log("Initialize Canvas")
 	CANVAS = document.querySelector('canvas')
 	CTX = CANVAS.getContext('2d')
 
-	backgroundImage = await loadImage('img/fundo.jpg')
+	video = await loadVideo('back.mp4')
 	sound = await loadAudio('sounds/gameover.wav')
 	sound.volume = 1
-	// sound2 = await loadAudio('sounds/funky.mp3')
-	// sound2.volume = .2
+	sound2 = await loadAudio('sounds/funky.mp3')
+	sound2.volume = .2
 	sound3 = await loadAudio('sounds/retrogame.ogg')
 	sound3.volume = 1
+	// CANVAS.onclick = () => video = null
 
 	boundaries = {
 		width: CANVAS.width,
@@ -83,24 +85,27 @@ const init = async () => {
 
 	bolinhas = bolinhas.map(b => new Bolinha(
 		Math.random() * CANVAS.width,
-		Math.random() * CANVAS.height,
+		Math.random() * CANVAS.height * .98 + 25,
 		6, 0, 'white'
 	))
-
-
+	
+	video.currentTime = 0
+	video.play()
 	keyPress(window)
 	loop()
 }
 
 const loop = () => {
 	setTimeout(() => {
-
-		CTX.drawImage(backgroundImage, 0, 0, CANVAS.width, CANVAS.height)
+		if (video.paused)
+			CTX.clearRect(0, 0, CANVAS.width, CANVAS.height)
+		else
+			CTX.drawImage(video, 0, 0, CANVAS.width, CANVAS.height);
 
 		pac.move(boundaries, key)
 		pac.draw(CTX)
 
-		// sound2.play()
+		sound2.play()
 
 
 		if (pontuacao < 10 || pontuacao > 20) {
@@ -197,40 +202,40 @@ const loop = () => {
 			})
 		}
 
-			bolinhas.forEach(b => {
-				b.move(boundaries, 0)
-				b.draw(CTX)
-				if (pac.colide(b)) {
-					b.x = Math.random() * CANVAS.width
-					b.y = Math.random() * CANVAS.height
-					sound3.play()
-					pontuacao += 1;
-				}
-			})
-
-			let textSize = 18;
-			CTX.fillStyle = 'purple'
-			CTX.fillRect(0, 0, CANVAS.width, 28)
-			CTX.font = `bold ${textSize}px sans`;
-			CTX.textBaseline = "top";
-			let texto = (`Pontuação: ${pontuacao} Vidas: ${pac.vidinha}`);
-			let textMetric = CTX.measureText(texto);
-			CTX.fillStyle = "#fff";
-			CTX.fillText(
-				texto,
-				CANVAS.width / 2 - textMetric.width / 2,
-				CANVAS.height / 20 - textSize
-			)
-
-			if (gameover) {
-				sound.play()
-				console.error('DEAD!!!')
-				cancelAnimationFrame(anime)
-			} else {
-				anime = requestAnimationFrame(loop)
+		bolinhas.forEach(b => {
+			b.move(boundaries, 0)
+			b.draw(CTX)
+			if (pac.colide(b)) {
+				b.x = Math.random() * CANVAS.width 
+				b.y = Math.random() * CANVAS.height * .98 + 25
+				sound3.play()
+				pontuacao += 1;
 			}
+		})
 
-		}, 1000 / FRAMES)
+		let textSize = 18;
+		CTX.fillStyle = 'purple'
+		CTX.fillRect(0, 0, CANVAS.width, 28)
+		CTX.font = `bold ${textSize}px Designer`;
+		CTX.textBaseline = "top";
+		let texto = (`Pontuação: ${pontuacao} Vidas: ${pac.vidinha}`);
+		let textMetric = CTX.measureText(texto);
+		CTX.fillStyle = "#fff";
+		CTX.fillText(
+			texto,
+			CANVAS.width / 2 - textMetric.width / 2,
+			CANVAS.height / 20 - textSize
+		)
+
+		if (gameover) {
+			sound.play()
+			console.error('DEAD!!!')
+			cancelAnimationFrame(anime)
+		} else {
+			anime = requestAnimationFrame(loop)
+		}
+
+	}, 1000 / FRAMES)
 }
 
 
