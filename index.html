@@ -14,14 +14,24 @@
         <h1 class="titulo">PacGame</h1>
         <div>
             <div class="telaInicio">
-                <h2 class="texto">Tente ter a maior pontuação enquanto foge dos fantasmas!</h2>
-                <form action="jogo.html">
-                    <input type="submit" class="botao" value="Jogar" />
-                </form>
+                
+                <div class="canvas">
+                <canvas id="canvas" width="700" height="497" tabindex="1">
+                    Seu navegador não suporta a tag canvas!
+                </canvas>
+            
             </div>
         </div>
+        <input type="button" class="jogar" id="jogar" value="Jogar" />
         <h2 class="subtexto">game by manuzitta</h2>
     </div>
+</div>
 </body>
 
+<script type="module" src="src/main.js">
+    window.onload() = () => {
+        document.querySelector('#canvas').style.display = "none"
+    }
+
+</script>
 </html>
