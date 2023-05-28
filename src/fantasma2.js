@@ -1,4 +1,4 @@
-import Circle from "./circle";
+import Circle from "./circle.js";
 import { loadImage } from "./loaderAssets";
 
 
