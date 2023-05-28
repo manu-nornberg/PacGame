@@ -35,9 +35,19 @@ let sound3
 let video
 
 const init = async () => {
+
+	setTimeout(() => {
+		let telaToda = document.getElementById("telaToda")
+		telaToda.style.display = "none"
+	}, 500)
+
 	console.log("Initialize Canvas")
 	CANVAS = document.querySelector('canvas')
 	CTX = CANVAS.getContext('2d')
+
+	canvas.style.display = 'block';
+	CTX.fillRect(0, 0, CANVAS.width, CANVAS.height)
+
 
 	video = await loadVideo('back.mp4')
 	sound = await loadAudio('sounds/gameover.wav')
@@ -52,6 +62,7 @@ const init = async () => {
 		width: CANVAS.width,
 		height: CANVAS.height
 	}
+	
 
 	fantas = fantas.map(f => new Fantasma(
 		Math.random() * CANVAS.width,
@@ -97,6 +108,8 @@ const init = async () => {
 
 const loop = () => {
 	setTimeout(() => {
+
+
 		if (video.paused)
 			CTX.clearRect(0, 0, CANVAS.width, CANVAS.height)
 		else
