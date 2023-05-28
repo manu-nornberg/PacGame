@@ -14,8 +14,17 @@ body {
 	margin: 0px;
 }
 
-canvas {
+.canvas {
+    display: grid;
+    place-items: center;
+    height: 100vh;
+}
+
+#canvas {
 	border: 1px solid black;
+	position: relative;
+    display: none;
+    border-radius: 5px;
 }
 
 .telaToda {
