@@ -39,7 +39,7 @@ export default class Fantasma extends Circle{
 
 	draw(CTX){
 		this.setCellY()
-
+		if(!this.img) return;
 		CTX.drawImage(
 			this.img,
 			this.cellX * this.cellWidth,
