@@ -109,11 +109,16 @@ const init = async () => {
 const loop = () => {
 	setTimeout(() => {
 
+		if(video.paused){
+			video.currentTime = 0;
+			video.play();
+		}
 
-		if (video.paused)
+		if (!video)
 			CTX.clearRect(0, 0, CANVAS.width, CANVAS.height)
 		else
 			CTX.drawImage(video, 0, 0, CANVAS.width, CANVAS.height);
+		
 
 		pac.move(boundaries, key)
 		pac.draw(CTX)
